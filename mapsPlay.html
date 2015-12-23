@@ -1,0 +1,116 @@
+<head>
+    <meta charset="utf-8">
+    <title>MapsPlay by Jacob Waterman</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
+</head>
+<body>
+
+</body>
+
+
+<!--GAME TEMPLATE -->
+<template name="game">
+
+    <!--Scorebox and Logo -->
+    <div id="scoreBox">
+        <img id="logo" src="mapsplay.png">
+        <span>Current Score: {{currScore}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Turn: {{currTurn}}/5</span>
+    </div>
+
+    <!--Map-->
+    <div id="mapBox" class="mapBoxHidden">
+        <div id="mapWrapper">
+            <div id="map" ></div>
+            {{#if distance}}
+                <div id="results">
+                    Distance: {{distance}} mi
+                    <br>
+                    Points: {{points}}    
+                </div>
+            {{/if}}
+        </div>
+
+        <div id="guessLocationWrapper">
+            <button class="btn btn-default" disabled="disabled" id="guessLocation" type="submit">Guess Location</button>
+            <button class="btn btn-default" id="nextTurn">Next Turn</button>
+            <button class="btn btn-default" id="finishGame">Finish Game</button>
+            <button class="btn btn-default" id="newGame">Play Again!</button>
+        </div>
+    </div>
+
+    <!--Panorama -->
+    <div id="pano"></div>
+
+    <!-- Show Maps button for mobile -->
+    <button type="button" class="btn btn-primary" id="guessLocationMobile">Show Map</button>
+
+    <!-- HighScores Modal -->
+    <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Highscore!</h4>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <p>
+                            {{currScore}} points! You've did awesome! To have your score displayed on our <a href="/highscores">Highscore</a> page choose a username for it to be displayed with.
+                        </p>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" placeholder="Ex. #bossman, W0nd3r W0man, iDaBest...">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input id="addHighScore" type="submit" value="Submit Highscore" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API Script-->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrhJCRV06mysDpW25HhK1Cc49f-O79F-Y&signed_in=false&callback=initMap"
+    async defer>
+    </script>
+
+</template>
+
+
+<!--GAME TEMPLATE -->
+<template name = "highscores">
+    <!-- logo -->
+    <div id="scoreBox">
+        <img id="logo" src="mapsplay.png">
+    </div>
+
+    <div class="row">
+        <!-- Play Again -->
+        <div class="col-sm-6">
+            <button type="button" id="playGame" class="btn btn-primary btn-lg">Play Again!</button>
+        </div>
+
+        <!-- HighScore Chart -->
+        <div class="col-sm-6">
+
+            <div class="highscores">
+                <h1>MapsPlay's Top 10 Scores</h1>
+
+                <table style="display:inline-block;">
+                    {{#each scores}}
+                    <tr>
+                        <td style="max-width:100px; overflow:hidden;">{{username}}</td>
+                        <td class="scoreCol">
+                            <div class="scoreBar" style="background-color:{{getColor @index}};">{{score}}</div>
+                        </td> 
+                    </tr>
+                    {{/each}}
+                </table>
+                <div class="circle(200px)"></div>
+            </div>
+        </div>
+    </div>
+</template>

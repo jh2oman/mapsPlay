@@ -1,0 +1,205 @@
+/* CSS declarations go here */
+@import "less/custom.bootstrap.import.less";
+html, body {
+  margin: 0;
+  padding: 0;
+}
+/*  Temporary fix to hide full-screen pano button. API currenty broken  */
+.gm-style > div:nth-child(10){
+    display:none;
+  }
+  /*  Hides the road name on the labels */
+  svg > text{
+    display:none;
+  }
+.row{
+  text-align: center;
+  margin-left:0px;
+  margin-right: 0px;
+}
+.col-sm-6{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#playGame{
+ margin-top: 100px; 
+}
+
+
+/* SCORE BOX AND LOGO  */
+.scoreBar{
+  display:inline-block;
+  padding:2px;
+  color:#FFF;
+  width:35px;
+  transition: width .5s;
+}
+.scoreCol{
+  text-align: left;
+}
+.scoreText{
+  width:40px;
+  display: inline-block;
+}
+#logo{
+  height:30px;
+  margin-right: 15px;
+}
+.highscores{
+  text-align: center;
+}
+#scoreBox{
+  position:fixed;
+  z-index: 100;
+  display:inline-block;
+  position:fixed;
+  top:0px;
+  background: rgba(0,0,0,.3);
+  color:white;
+  padding:5px 10px;
+
+}
+#scoreBox span{
+  position: relative;
+  display:inline-block;
+}
+
+
+#results{
+  z-index: 10;
+  position:absolute;
+  top:0;
+  background: rgba(0,0,0,.3);
+  color:white;
+  padding:5px;
+}
+
+#pano{
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+
+#nextTurn, #finishGame, #newGame{
+  display:none;
+  z-index: 10;
+}
+
+/* HIGHSCORES PAGE  */
+
+.highscores{
+  margin-top: 100px;
+}
+.highscores table{
+  display: block;
+  margin:30px auto;
+  max-width:800px;
+}
+.highscores td{
+  padding-right: 5px;
+}
+.highscores th{
+  text-align: center;
+  padding: 5px;
+  font-weight:400;
+  font-size: 1.2em;
+  font-style: normal !important;
+  border-bottom:1px solid #000;
+}
+.highscores .left-col{
+  border-right:1px solid #000;
+  font-style: italic;
+}
+
+/* MAP STYLES  */
+
+#guessLocation{
+  z-index: 20;
+}
+#guessLocationWrapper{
+  width:100%;
+  position:absolute;
+  bottom:0px;
+  text-align: center;
+}
+#mapBox{
+  overflow:hidden;
+  z-index: 10;
+  width:250px;
+  height:300px;   
+  position:fixed;
+  top:0px;
+  right:0px;
+}
+#map{
+  z-index: 10;
+  opacity:1;
+  width: 500px;
+  height:300px;
+  cursor: crosshair;
+}
+#mapWrapper{
+  overflow:hidden;
+  z-index: 10;
+  width:250px;
+  height:250px;   
+  position:fixed;
+  top:0px;
+  right:0px;
+  opacity: .5;
+  cursor: crosshair;
+}
+.mapWrapperHover{
+  transition: width .5s, height .5s, opacity .5s;
+  opacity:1 !important;
+  width: 500px !important;
+  height:300px !important;
+}
+.mapBoxHover{
+  transition: width .5s, height .5s, opacity .5s;
+  width: 500px !important;
+  height:350px !important;
+}
+
+/* MOBILE STYLES  */
+
+.mapBoxMobile{
+  top:inherit !important;
+  bottom:0px !important;
+  width:100%  !important;
+  height:100%  !important;
+  background: rgba(0,0,0,.3);
+
+}
+.mapWrapperMobile{
+  top:inherit !important;
+  bottom:-400px !important;
+  display:inherit !important;
+  opacity:1 !important;
+  width:100%  !important;
+  height:400px  !important;
+  background: inherit !important;
+   transform: translate(0px,-450px);
+  -webkit-transition: transform .5s ease-in-out;
+}
+.mapMobile{
+  width:100%  !important;
+  height:400px  !important;
+}
+
+
+@media only screen and (max-width: @screen-sm) {
+  .mapBoxHidden{
+    z-index: -100 !important;
+  }
+  .mapBoxHidden #mapWrapper{
+    top:inherit !important;
+  bottom:-400px !important;
+  }
+  #guessLocationMobile{
+    position:fixed;
+    bottom:0px;
+    z-index: 100;
+  }
+
+}
