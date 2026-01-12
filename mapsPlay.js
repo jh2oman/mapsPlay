@@ -52,7 +52,7 @@ function Game(){
  * initializes the global game function
  * INPUTS - none
  * OUTPUTS - none
- * SIDE EFFECTS- 
+ * SIDE EFFECTS-
  		The game object is used as the sole global object in this code. Everything that we need to
  		keep track of from score, to the map object, or the current turn is stored in this object
  		The reasoning behind this is to demonstrate the use of Singleton Design Pattern which I found
@@ -217,9 +217,9 @@ function hideMapMobile(){
  * function used throughout the game to randomly select a location
  * INPUTS - none
  * OUTPUTS - none
- * SIDE EFFECTS- finds a random location, updates game object accordingly 
+ * SIDE EFFECTS- finds a random location, updates game object accordingly
  */
-function randomGenerate(event){
+function randomGenerate(){
 	//Random number 0-6
 	var region = Math.floor(Math.random()*7);
 	var quadrilateral
@@ -261,7 +261,7 @@ function randomGenerate(event){
 
 /*
  * quadToLocation(quad)
- * Helper function for randomGenerate() 
+ * Helper function for randomGenerate()
  * INPUTS - quadrilateral object
  * OUTPUTS - location object
  * SIDE EFFECTS- Finds a random point on a quadrilateral
@@ -278,12 +278,12 @@ function quadToLocation(quad){
 
 	//Decide ramdom triangle and alculate random points within said triangle
 	if(Math.random()*total < t1){
-		randLng = (1- Math.sqrt(r1)) * quad.a.x + (Math.sqrt(r1)*(1-r2)) * quad.b.x + (Math.sqrt(r1)*r2) * quad.d.x; 
-		randLat = (1- Math.sqrt(r1)) * quad.a.y + (Math.sqrt(r1)*(1-r2)) * quad.b.y + (Math.sqrt(r1)*r2) * quad.d.y; 
+		randLng = (1- Math.sqrt(r1)) * quad.a.x + (Math.sqrt(r1)*(1-r2)) * quad.b.x + (Math.sqrt(r1)*r2) * quad.d.x;
+		randLat = (1- Math.sqrt(r1)) * quad.a.y + (Math.sqrt(r1)*(1-r2)) * quad.b.y + (Math.sqrt(r1)*r2) * quad.d.y;
 	}
 	else{
-		randLng = (1- Math.sqrt(r1)) * quad.d.x + (Math.sqrt(r1)*(1-r2)) * quad.b.x + (Math.sqrt(r1)*r2) * quad.c.x; 
-		randLat = (1- Math.sqrt(r1)) * quad.d.y + (Math.sqrt(r1)*(1-r2)) * quad.b.y + (Math.sqrt(r1)*r2) * quad.c.y; 
+		randLng = (1- Math.sqrt(r1)) * quad.d.x + (Math.sqrt(r1)*(1-r2)) * quad.b.x + (Math.sqrt(r1)*r2) * quad.c.x;
+		randLat = (1- Math.sqrt(r1)) * quad.d.y + (Math.sqrt(r1)*(1-r2)) * quad.b.y + (Math.sqrt(r1)*r2) * quad.c.y;
 	}
 	var location = new google.maps.LatLng(randLat,randLng);
 	return location;
@@ -326,7 +326,7 @@ function placePano(data,status, quadrilateral){
  * calculates points as a function of distance between guessed location and real location
  * INPUTS - distance
  * OUTPUTS - points
- * SIDE EFFECTS- 
+ * SIDE EFFECTS-
  */
 function getPoints(distance){
 	var a = 1000;
@@ -342,7 +342,7 @@ function getPoints(distance){
  * calculates distance between two latitude longitude points
  * INPUTS - latlng1, latlng2 = Google LatLng objects
  * OUTPUTS - distance
- * SIDE EFFECTS- 
+ * SIDE EFFECTS-
  */
 function getDistance(latlng1, latlng2) {
 	var lat1 = latlng1.lat();
@@ -351,13 +351,13 @@ function getDistance(latlng1, latlng2) {
 	var lng2 = latlng2.lng();
 	var R = 6371; // Radius of the earth in km
 	var dLat = deg2rad(lat2-lat1);  // deg2rad below
-	var dLon = deg2rad(lng2-lng1); 
-	var a = 
+	var dLon = deg2rad(lng2-lng1);
+	var a =
 	Math.sin(dLat/2) * Math.sin(dLat/2) +
-	Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
 	Math.sin(dLon/2) * Math.sin(dLon/2)
-	; 
-	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	;
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 	var d = R * c; // Distance in km
 	d*=0.621371;
 	return d;
@@ -473,7 +473,7 @@ function newGame(){
 
 	if($('#mapWrapper').hasClass("mapWrapperMobile"))
 		hideMapMobile();
-	
+
 	initMap();
 }
 
